@@ -9,7 +9,7 @@ local Tab = Window:MakeTab({
 })
 
 getgenv().AutoClick = true;
-
+getgenv().RebirthAuto = true;
 
 function AutoClick()
     while getgenv().AutoClick == true do
@@ -18,6 +18,12 @@ function AutoClick()
     end
 end
 
+function RebirthAuto()
+	while getgenv().RebirthAuto == true do
+		game:GetService("ReplicatedStorage").Remotes.Rebirth:InvokeServer()
+		wait(0.0001)
+	end
+end
 
 OrionLib:MakeNotification({
 	Name = "     Made By     ",
@@ -36,7 +42,14 @@ Tab:AddToggle({
 	end    
 })
 
-
+Tab:AddToggle({
+	Name = "Auto Rebirth OP",
+	Default = false,
+	Callback = function(Value)
+		getgenv().RebirthAuto = Value
+        RebirthAuto()
+	end    
+})
 
 
 
